@@ -1,0 +1,18 @@
+
+version: 2
+
+sources:
+  - name: omnichannel
+    database: dbtperatice
+    schema: omni_management
+    tables:
+      - name: Channels
+        identifier: channels
+      - name: Customers
+        identifier: customers
+      - name: Products
+        identifier: products
+      - name: VisitHistory
+        identifier: visitHistory
+      - name: PurchaseHistory
+        identifier: purchaseHistory

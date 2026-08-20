@@ -1,0 +1,81 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: All customers' details. Includes anonymous users who used guest checkout.
+    columns:
+      - name: sk_customer
+        description: Surrogate key for the customer dimension.
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_channels
+    description: Channels data. Allows you to analyze linked facts from the channels perspective.
+    columns:
+      - name: sk_channel
+        description: Surrogate key for the channel dimension.
+        tests:
+          - unique
+          - not_null
+  
+  - name: dim_date
+    description: Date data. Allows you to analyze linked facts from the date perspective,
+    columns:
+      - name: date_day
+        description: Surrogate key for the date dimension. The naming convention wasn't added here.
+        tests:
+          - unique
+          - not_null
+      
+  - name: dim_products
+    description: Product data. Allows you to analyze linked facts from the product perspective.
+    columns:
+      - name: sk_product
+        description: Surrogate key for the product dimension.
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_purchase_history
+    description: Customer orders history.
+    columns:
+      - name: sk_customer
+        description: Surrogate key for the customer dimension.
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: sk_customer
+      - name: sk_channel
+        description: Surrogate key for the channel dimension.
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_channels')
+                field: sk_channel
+      - name: sk_product
+        description: Surrogate key for the product dimension.
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_products')
+                field: sk_product
+
+  - name: fct_visit_history
+    description: Customer visit history.
+    columns:
+      - name: sk_customer
+        description: Surrogate key for the customer dimension.
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: sk_customer
+      - name: sk_channel
+        description: Surrogate key for the channel dimension.
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_channels')
+                field: sk_channel

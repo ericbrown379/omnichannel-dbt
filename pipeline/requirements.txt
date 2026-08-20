@@ -1,0 +1,6 @@
+mysql-connector-python
+pandas
+pandas-gbq
+python-dotenv
+google-auth
+google-cloud-bigquery

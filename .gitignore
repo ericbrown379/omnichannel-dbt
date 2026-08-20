@@ -1,0 +1,22 @@
+# dbt
+target/
+dbt_packages/
+logs/
+
+# pipeline secrets - never commit these
+.env
+.env.*
+!.env.example
+.secrets/
+*-key.json
+service-account*.json
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# os
+.DS_Store
+dbt_internal_packages/
